@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,9 @@ public class Pessoa implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String nome;
+	
+	@Column(unique = true)
 	private String cpf;
 	private String email;
 	private Genero genero;
@@ -29,4 +32,7 @@ public class Pessoa implements Serializable {
 	private LocalDate dataNascimento;
 	private LocalDateTime dataCriacao;
 	private LocalDateTime dataAtualizacao;
+	
+	
+
 }

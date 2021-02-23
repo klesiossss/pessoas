@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.pessoas.model.Genero;
 import br.com.pessoas.model.Pessoa;
 import lombok.Data;
@@ -41,8 +43,11 @@ public class PessoaDTO implements Serializable {
 	private String nacionalidade;
 	private String naturalidade;
 	
+	
+	
 	public PessoaDTO(Pessoa pessoa) {
-		this.nome = pessoa.getName();
+		this.id = pessoa.getId();
+		this.nome = pessoa.getNome();
 		this.cpf = pessoa.getCpf();
 		this.email = pessoa.getEmail();
 		this.dataNascimento = pessoa.getDataNascimento();
@@ -50,5 +55,23 @@ public class PessoaDTO implements Serializable {
 		this.nacionalidade = pessoa.getNacionalidade();
 		this.naturalidade = pessoa.getNaturalidade();
 	}
+	
+	@JsonIgnore
+	public Pessoa getPessoa() {
+		Pessoa p = new Pessoa();
+		p.setId(this.id);
+		p.setNome(this.nome);
+		p.setCpf(this.cpf);
+		p.setDataNascimento(this.dataNascimento);
+		p.setEmail(this.email);
+		p.setGenero(this.genero);
+		p.setNaturalidade(this.naturalidade);
+		p.setNacionalidade(this.nacionalidade);
+		
+		return p;
+		
+	}
+	
+	
 	
 }
