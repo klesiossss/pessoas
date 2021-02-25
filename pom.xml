@@ -14,7 +14,7 @@
 	<name>pessoas</name>
 	<description>Cadastramento de Pessoas</description>
 	<properties>
-		<java.version>15</java.version>
+		<java.version>14</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -68,6 +68,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>springbootpostgresqldocker</finalName>
 	</build>
 	<repositories>
 		<repository>

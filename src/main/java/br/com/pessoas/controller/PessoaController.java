@@ -1,3 +1,4 @@
+
 package br.com.pessoas.controller;
 
 import java.util.List;
@@ -67,7 +68,7 @@ public class PessoaController {
 		return ResponseEntity.ok(pessoa);
 	}	
 	
-	@PostMapping
+	@PostMapping(name = "/post")
 	public ResponseEntity<PessoaDTO> salvar(@RequestBody @Valid PessoaDTO pessoaDTO) {
 		var pessoa = pessoaService.salvar(pessoaDTO);
 		var uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(pessoa.getId()).toUri();

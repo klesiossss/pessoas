@@ -93,6 +93,7 @@ public class PessoaService  {
 		var pessoa = pessoaRepository.findByCpf(pessoaDTO.getCpf()).orElseThrow(ResourceNotFoundException::new);
 		pessoaRepository.deleteById(pessoa.getId());
 	}
+
 	
 	
 }
