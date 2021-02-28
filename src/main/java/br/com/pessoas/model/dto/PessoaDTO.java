@@ -9,14 +9,17 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import br.com.pessoas.model.Genero;
 import br.com.pessoas.model.Pessoa;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-
+@ToString
 @Data
 @NoArgsConstructor
 public class PessoaDTO implements Serializable {
@@ -36,6 +39,7 @@ public class PessoaDTO implements Serializable {
 	@Email(message = "Informe um Email válido")
 	private String email;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
 	@NotNull(message = "O preenchimento desse campo é obrigatório")
 	private LocalDate dataNascimento;
 	
@@ -67,7 +71,6 @@ public class PessoaDTO implements Serializable {
 		p.setGenero(this.genero);
 		p.setNaturalidade(this.naturalidade);
 		p.setNacionalidade(this.nacionalidade);
-		
 		return p;
 		
 	}

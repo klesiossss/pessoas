@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 
@@ -29,6 +31,7 @@ public class Pessoa implements Serializable {
 	private Genero genero;
 	private String nacionalidade;
 	private String naturalidade;
+	@JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
 	private LocalDate dataNascimento;
 	private LocalDateTime dataCriacao;
 	private LocalDateTime dataAtualizacao;

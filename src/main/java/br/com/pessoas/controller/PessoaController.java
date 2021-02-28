@@ -68,7 +68,7 @@ public class PessoaController {
 		return ResponseEntity.ok(pessoa);
 	}	
 	
-	@PostMapping(name = "/post")
+	@PostMapping
 	public ResponseEntity<PessoaDTO> salvar(@RequestBody @Valid PessoaDTO pessoaDTO) {
 		var pessoa = pessoaService.salvar(pessoaDTO);
 		var uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(pessoa.getId()).toUri();

@@ -65,7 +65,8 @@ public class PessoaService  {
 	public PessoaDTO salvar(PessoaDTO pessoaDTO) {
 		Pessoa pessoa = pessoaDTO.getPessoa();
 		System.out.println(pessoa);
-		var podeSalvar = pessoa.getId() == null;
+		var podeSalvar = pessoaDTO.getId() == 0  && pessoaRepository.findById(pessoa.getId()).isEmpty();
+	
 		if(podeSalvar) {
 			pessoa.setDataCriacao((LocalDateTime.now()));
 			var pessoaSalva = pessoaRepository.save(pessoa);
@@ -79,7 +80,7 @@ public class PessoaService  {
 	
 	public PessoaDTO editar(PessoaDTO pessoaDTO) {
 		Pessoa pessoa = pessoaDTO.getPessoa();
-		var podeEditar = pessoaDTO.getId() != null;
+		var podeEditar = pessoaRepository.findByCpf(pessoa.getCpf()).isPresent();
 		if(podeEditar) {
 			pessoa.setDataAtualizacao((LocalDateTime.now()));
 			var pessoaSalva = pessoaRepository.save(pessoa);
@@ -90,8 +91,9 @@ public class PessoaService  {
 	}
 	
 	public void remover(PessoaDTO pessoaDTO) {
-		var pessoa = pessoaRepository.findByCpf(pessoaDTO.getCpf()).orElseThrow(ResourceNotFoundException::new);
-		pessoaRepository.deleteById(pessoa.getId());
+		Pessoa pessoa = pessoaDTO.getPessoa();
+		var deletapessoa = pessoaRepository.findByCpf(pessoa.getCpf()).orElseThrow(ResourceNotFoundException::new);
+		 pessoaRepository.deleteById(deletapessoa.getId());
 	}
 
 	
