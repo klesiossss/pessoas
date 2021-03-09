@@ -25,50 +25,49 @@ import br.com.pessoas.service.PessoaService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/pessoa")
-@AllArgsConstructor
+@RequestMapping("v1")
 public class PessoaController {
 	
 	@Autowired
 	private PessoaService pessoaService;
 	
-	@GetMapping("/lista")
+	@GetMapping("protected/pessoa/lista")
 	public ResponseEntity<List<PessoaDTO>> obterTodos() {
 		var pessoas = pessoaService.obterTodos();
 		return ResponseEntity.ok(pessoas);
 	}
 	
-	@GetMapping()
+	@GetMapping(path = "protected/pessoa")
 	public ResponseEntity<Page<PessoaDTO>> obterTodos(@PageableDefault(size = 10, page = 0) Pageable pageable) {
 		var pessoas = pessoaService.obterTodos(pageable);
 		return ResponseEntity.ok(pessoas);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping(path = "protected/pessoa/{id}")
 	public ResponseEntity<PessoaDTO> obterPorId(@PathVariable Long id) {
 		var pessoa = pessoaService.obterPorId(id);
 		return ResponseEntity.ok(pessoa);
 	}
 	
-	@GetMapping("/cpf/{cpf}")
+	@GetMapping("protected/pessoa/cpf/{cpf}")
 	public ResponseEntity<PessoaDTO> obterPorCpf(@PathVariable String cpf) {
 		var pessoa = pessoaService.obterPorCpf(cpf);
 		return ResponseEntity.ok(pessoa);
 	}
 	
-	@GetMapping("filter/nome/{nome}")
+	@GetMapping("protected/pessoa/filter/nome/{nome}")
 	public ResponseEntity<List<PessoaDTO>> filtrarPorNome(@PathVariable String nome) {
 		var pessoa = pessoaService.filtrarPorNome(nome);
 		return ResponseEntity.ok(pessoa);
 	}
 	
-	@GetMapping("/nome/{nome}")
+	@GetMapping("protected/pessoa/nome/{nome}")
 	public ResponseEntity<PessoaDTO> obterPorNome(@PathVariable String nome) {
 		var pessoa = pessoaService.obterPorNome(nome);
 		return ResponseEntity.ok(pessoa);
 	}	
 	
-	@PostMapping
+	@PostMapping(path = "admin/pessoa")
 	public ResponseEntity<PessoaDTO> salvar(@RequestBody @Valid PessoaDTO pessoaDTO) {
 		var pessoa = pessoaService.salvar(pessoaDTO);
 		var uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(pessoa.getId()).toUri();
@@ -76,13 +75,13 @@ public class PessoaController {
 	}
 	
 	
-	@PutMapping
+	@PutMapping(path = "admin/pessoa")
 	public ResponseEntity<PessoaDTO> editar(@RequestBody @Valid PessoaDTO pessoaDTO) {
 		var pessoa = pessoaService.editar(pessoaDTO);
 		return ResponseEntity.ok(pessoa);	
 	}
 	
-	@DeleteMapping
+	@DeleteMapping(path = "admin/pessoa")
 	public ResponseEntity<PessoaDTO> remover(@RequestBody @Valid PessoaDTO pessoaDTO) {
 		pessoaService.remover(pessoaDTO);
 		return ResponseEntity.ok().build();

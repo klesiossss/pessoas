@@ -34,7 +34,7 @@ public class PessoaService  {
 		var listPessoas = pagePessoas.getContent()
 				.stream()
 				.map(PessoaDTO::new)
-				.collect(Collectors.toList());;
+				.collect(Collectors.toList());
 	
 		return new PageImpl<>(listPessoas, pageable, pagePessoas.getTotalElements());
 	}

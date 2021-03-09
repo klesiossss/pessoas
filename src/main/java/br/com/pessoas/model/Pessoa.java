@@ -12,11 +12,15 @@ import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = -4104580228352976447L;
 	
@@ -35,7 +39,16 @@ public class Pessoa implements Serializable {
 	private LocalDate dataNascimento;
 	private LocalDateTime dataCriacao;
 	private LocalDateTime dataAtualizacao;
-	
-	
 
+
+	public Pessoa(long id,String nome, String cpf, String email, Genero genero, String nacionalidade, String naturalidade, LocalDate dataNascimento) {
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.genero = genero;
+		this.nacionalidade = nacionalidade;
+		this.naturalidade = naturalidade;
+		this.dataNascimento = dataNascimento;
+	}
 }
