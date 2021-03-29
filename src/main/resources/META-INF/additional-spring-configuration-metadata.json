@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "jpa.database-platform",
+    "type": "java.lang.String",
+    "description": "A description for 'jpa.database-platform'"
+  },
+  {
+    "name": "jpa.generate-ddl",
+    "type": "java.lang.String",
+    "description": "A description for 'jpa.generate-ddl'"
+  },
+  {
+    "name": "jpa.show-sql",
+    "type": "java.lang.String",
+    "description": "A description for 'jpa.show-sql'"
+  },
+  {
+    "name": "jpa.hibernate.ddl-auto",
+    "type": "java.lang.String",
+    "description": "A description for 'jpa.hibernate.ddl-auto'"
+  }
+]}

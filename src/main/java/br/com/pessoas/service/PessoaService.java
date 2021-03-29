@@ -32,7 +32,7 @@ public class PessoaService  {
 	public Page<PessoaDTO> obterTodos(Pageable pageable){	
 		var pagePessoas = pessoaRepository.findAll(pageable);
 		var listPessoas = pagePessoas.getContent()
-				.stream()
+				.stream()  
 				.map(PessoaDTO::new)
 				.collect(Collectors.toList());;
 	
@@ -65,7 +65,7 @@ public class PessoaService  {
 	public PessoaDTO salvar(PessoaDTO pessoaDTO) {
 		Pessoa pessoa = pessoaDTO.getPessoa();
 		System.out.println(pessoa);
-		var podeSalvar = pessoaDTO.getId() == 0  && pessoaRepository.findById(pessoa.getId()).isEmpty();
+		var podeSalvar = pessoaDTO.getId() == null;
 	
 		if(podeSalvar) {
 			pessoa.setDataCriacao((LocalDateTime.now()));
@@ -93,7 +93,8 @@ public class PessoaService  {
 	public void remover(PessoaDTO pessoaDTO) {
 		Pessoa pessoa = pessoaDTO.getPessoa();
 		var deletapessoa = pessoaRepository.findByCpf(pessoa.getCpf()).orElseThrow(ResourceNotFoundException::new);
-		 pessoaRepository.deleteById(deletapessoa.getId());
+		 pessoaRepository.delete(deletapessoa);
+		 
 	}
 
 	

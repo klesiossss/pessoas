@@ -1,5 +1,4 @@
-FROM openjdk:14  
-VOLUME /tmp
-EXPOSE 8080
-ADD target/springbootpostgresqldocker.jar springbootpostgresqldocker.jar
-ENTRYPOINT ["java","-jar","/springbootpostgresqldocker.jar"]
+FROM adoptopenjdk/openjdk14
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
