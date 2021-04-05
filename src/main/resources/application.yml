@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  profiles:
+    active: dev
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testes
+    username: postgres
+    password: 12345
+
+  jpa:
+    show-sql: true
+    hibernate: 
+      ddl-auto: update
+
+
