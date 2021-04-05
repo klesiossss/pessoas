@@ -22,14 +22,13 @@ public class PessoaService {
 		this.pessoaRepository = pessoaRepository;
 	}
 	
+	
 	Page<Pessoa> obterTodos(Pageable pageagle){
 		return pessoaRepository.findAll(pageagle);
 	}
 	
 	
-	List<Pessoa> obterTodos() {
-		return pessoaRepository.findAll();	
-	}
+
 	
 	
 	
@@ -41,6 +40,8 @@ public class PessoaService {
 	Optional<Pessoa> buscaPorCpf(String cpf){
 		return pessoaRepository.findByCpf(cpf);
 	}
+	
+	
 	
 	Optional<Pessoa> buscaPorNome(String nome){
 		return pessoaRepository.findByNomeIgnoreCase(nome);
@@ -62,6 +63,8 @@ public class PessoaService {
 		
 	}
 	
+	
+	
 	Pessoa update(Pessoa pessoa) {
 		var podeAtualizar = pessoa.getId() != null && pessoaRepository.findByCpf(pessoa.getCpf()).isPresent();
 		
@@ -70,6 +73,8 @@ public class PessoaService {
 		else
 			throw new ResourceNotFoundException();
 	}
+	
+	
 	
 	void delete(Pessoa pessoa) {
 		var podeDeletar = pessoa.getId() != null && pessoaRepository.findByCpf(pessoa.getCpf()).isPresent();
