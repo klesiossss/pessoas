@@ -28,7 +28,9 @@ public class PessoaService {
 	}
 	
 	
-
+	List<Pessoa> obterTodos() {
+		return pessoaRepository.findAll();	
+	}
 	
 	
 	
